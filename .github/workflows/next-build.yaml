@@ -15,13 +15,22 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-name: pr-check
+name: build and publish next image
 
 permissions:
   contents: read
+  packages: write
+  attestations: write
+  id-token: write
 
-on: [pull_request]
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
     uses: openkaiden/gh-actions/.github/workflows/oci-image.yaml@da905b7ca937b8cfe1b2efc9e0310c6635d25732 # main
+    with:
+      push: true
