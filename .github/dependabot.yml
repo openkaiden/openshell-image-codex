@@ -15,13 +15,18 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-name: pr-check
+version: 2
+updates:
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "daily"
+      # check at 3am UTC
+      time: "03:00"
 
-permissions:
-  contents: read
-
-on: [pull_request]
-
-jobs:
-  build:
-    uses: openkaiden/gh-actions/.github/workflows/oci-image.yaml@da905b7ca937b8cfe1b2efc9e0310c6635d25732 # main
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+      # check at 3am UTC
+      time: "03:00"
